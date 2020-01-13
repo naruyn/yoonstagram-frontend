@@ -1,10 +1,14 @@
 import React from 'react';
+import GlobalSytles from "../Sytles/GlobalSytles"
+import {ThemeProvider} from "styled-components";
+import Theme from "../Sytles/Theme";
+import Router from "./Router";
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
-}
-
-export default App;
+export default () => (
+  <ThemeProvider theme={Theme}>
+    <>
+      <GlobalSytles />
+      <Router isLoggedIn={false} />
+    </>
+  </ThemeProvider>
+);
