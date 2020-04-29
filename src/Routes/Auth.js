@@ -9,7 +9,8 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
-	${(props) => props.theme.whiteBox}
+	${(props) => props.theme.whiteBox};
+	padding: 4px;
 `;
 
 export default () => {
