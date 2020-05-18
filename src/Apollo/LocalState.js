@@ -3,10 +3,10 @@ export const defaults = {
 };
 
 export const resolvers = {
-	Mutaion: {
+	Mutation: {
 		logUserIn: (_, { token }, { cache }) => {
 			localStorage.setItem("token", token);
-			cache.wirteData({
+			cache.writeData({
 				data: {
 					isLoggedIn: true
 				}

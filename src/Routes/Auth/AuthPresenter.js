@@ -64,7 +64,7 @@ export default ({
 					<Button text={"로그인"} />
 				</form>
 			)}
-			{action === "signUp" && (
+			{action === "signup" && (
 				<form onSubmit={onSubmit}>
 					<Input placeholder={"Firstname"} {...firstName} />
 					<Input placeholder={"Lastname"} {...lastName} />
@@ -84,18 +84,20 @@ export default ({
 				</form>
 			)}
 		</Form>
-		<StateChanger>
-			{action === "login" ? (
-				<>
-					계정이 없으신가요?{" "}
-					<Link onClick={() => setAction("signUp")}>가입하기</Link>
-				</>
-			) : (
-				<>
-					계정이 있으신가요?{" "}
-					<Link onClick={() => setAction("login")}>로그인</Link>
-				</>
-			)}
-		</StateChanger>
+		{action !== "confirm" && (
+			<StateChanger>
+				{action === "login" ? (
+					<>
+						계정이 없으신가요?{" "}
+						<Link onClick={() => setAction("signup")}>가입하기</Link>
+					</>
+				) : (
+					<>
+						계정이 있으신가요?{" "}
+						<Link onClick={() => setAction("login")}>로그인</Link>
+					</>
+				)}
+			</StateChanger>
+		)}
 	</Wrapper>
 );

@@ -24,7 +24,7 @@ const Link = styled.a`
 	color: ${(props) => props.theme.darkBlueColor};
 `;
 
-const CopyRight = styled.span`
+const Copyright = styled.span`
 	color: ${(props) => props.theme.darkGreyColor};
 `;
 
@@ -65,6 +65,6 @@ export default () => (
 				<Link href="#">언어</Link>
 			</ListItem>
 		</List>
-		<CopyRight>yoonstagram {new Date().getFullYear} &copy;</CopyRight>
+		<Copyright>yoonstagram {new Date().getFullYear} &copy;</Copyright>
 	</Footer>
 );

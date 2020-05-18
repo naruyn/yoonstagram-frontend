@@ -1,13 +1,13 @@
 import React from "react";
-import GlobalSytles from "../Sytles/GlobalSytles";
-import { gql } from "apollo-boost";
+import GlobalSytles from "../Styles/GlobalSytles";
 import styled, { ThemeProvider } from "styled-components";
+import { gql } from "apollo-boost";
+import { useQuery } from "react-apollo-hooks";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Theme from "../Sytles/Theme";
+import Theme from "../Styles/Theme";
 import Router from "./Router";
 import Footer from "./Footer";
-import { useQuery } from "react-apollo-hooks";
 
 const QUERY = gql`
 	{

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Feed from "../Routes/Feed";
-import AuthContainer from "../Routes/Auth/index";
+import Auth from "../Routes/Auth";
 
 const LoggedInRoutes = () => (
 	<>
@@ -12,7 +12,7 @@ const LoggedInRoutes = () => (
 
 const LoggedOutRoutes = () => (
 	<>
-		<Route exact path="/" component={AuthContainer} />
+		<Route exact path="/" component={Auth} />
 	</>
 );
 
