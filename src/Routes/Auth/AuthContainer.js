@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AuthPresenter from "./AuthPresenter";
 import useInput from "../../Hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
-import { LOG_IN, CREATE_ACCOUNT } from "./AuthQueries";
+import { LOG_IN, CREATE_ACCOUNT, CONFIRM_SECRET } from "./AuthQueries";
 import { toast } from "react-toastify";
 
 export default () => {
@@ -11,7 +11,8 @@ export default () => {
 	const username = useInput("");
 	const firstName = useInput("");
 	const lastName = useInput("");
-	const email = useInput("");
+	const email = useInput("naruyn@naver.com");
+	const secret = useInput("");
 	const [requestSecretMutation] = useMutation(LOG_IN, {
 		variables: { email: email.value }
 	});
@@ -23,6 +24,13 @@ export default () => {
 			lastName: lastName.value
 		}
 	});
+	const [confirmSecretMutation] = useMutation(CONFIRM_SECRET, {
+		variables: {
+			email: email.value,
+			secret: secret.value
+		}
+	});
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		if (action === "login") {
@@ -33,9 +41,12 @@ export default () => {
 					} = await requestSecretMutation();
 					if (!requestSecret) {
 						toast.error("You don't have an account, create one!", {
-							onClose: () => setAction("signUp"),
+							onClose: () => setAction("signup"),
 							autoClose: 3000
 						});
+					} else {
+						toast.success("Check your email. And put login secret in box");
+						setAction("confirm");
 					}
 				} catch {
 					toast.error("Request is fail. Try again");
@@ -43,7 +54,7 @@ export default () => {
 			} else {
 				toast.error("Email is required");
 			}
-		} else if (action === "signUp") {
+		} else if (action === "signup") {
 			if (
 				username.value !== "" &&
 				email.value !== "" &&
@@ -68,6 +79,16 @@ export default () => {
 			} else {
 				toast.error("All fields are required");
 			}
+		} else if (action === "confirm") {
+			console.log("Here");
+			if (secret.value !== "") {
+				try {
+					const data = await confirmSecretMutation();
+					console.log(data);
+				} catch (e) {
+					toast.error(e.message);
+				}
+			}
 		}
 	};
 
@@ -79,6 +100,7 @@ export default () => {
 			firstName={firstName}
 			lastName={lastName}
 			email={email}
+			secret={secret}
 			onSubmit={onSubmit}
 		/>
 	);
