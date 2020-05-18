@@ -2,6 +2,8 @@ import React from "react";
 import GlobalSytles from "../Sytles/GlobalSytles";
 import { gql } from "apollo-boost";
 import styled, { ThemeProvider } from "styled-components";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Theme from "../Sytles/Theme";
 import Router from "./Router";
 import Footer from "./Footer";
@@ -30,6 +32,7 @@ export default () => {
 				<GlobalSytles />
 				<Router isLoggedIn={isLoggedIn} />
 				<Footer />
+				<ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
 			</Wrapper>
 		</ThemeProvider>
 	);
