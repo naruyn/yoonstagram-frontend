@@ -15,5 +15,6 @@ export default {
         border: ${BOX_BORDER};
         border-radius: ${BORDER_RADIUS};
         background-color : white;
-    `
+	`,
+	maxWidth: "935px"
 };

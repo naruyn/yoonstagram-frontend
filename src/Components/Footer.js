@@ -8,6 +8,7 @@ const Footer = styled.footer`
 	text-transform: uppercase;
 	font-weight: 600;
 	font-size: 12px;
+	margin: 50px 0;
 `;
 
 const List = styled.ul`
@@ -65,6 +66,6 @@ export default () => (
 				<Link href="#">언어</Link>
 			</ListItem>
 		</List>
-		<Copyright>yoonstagram {new Date().getFullYear} &copy;</Copyright>
+		<Copyright>yoonstagram {new Date().getFullYear()}&copy;</Copyright>
 	</Footer>
 );
