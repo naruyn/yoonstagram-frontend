@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
@@ -59,29 +60,44 @@ export default ({
 	<Wrapper>
 		<Form>
 			{action === "login" && (
-				<form onSubmit={onSubmit}>
-					<Input placeholder={"Email"} {...email} type="email" />
-					<Button text={"로그인"} />
-				</form>
+				<>
+					<Helmet>
+						<title>Login | yoonstagram</title>
+					</Helmet>
+					<form onSubmit={onSubmit}>
+						<Input placeholder={"Email"} {...email} type="email" />
+						<Button text={"로그인"} />
+					</form>
+				</>
 			)}
 			{action === "signup" && (
-				<form onSubmit={onSubmit}>
-					<Input placeholder={"Firstname"} {...firstName} />
-					<Input placeholder={"Lastname"} {...lastName} />
-					<Input placeholder={"Email"} {...email} type="email" />
-					<Input placeholder={"Username"} {...username} />
-					<Button text={"가입하기"} />
-				</form>
+				<>
+					<Helmet>
+						<title>Signup | yoonstagram</title>
+					</Helmet>
+					<form onSubmit={onSubmit}>
+						<Input placeholder={"Firstname"} {...firstName} />
+						<Input placeholder={"Lastname"} {...lastName} />
+						<Input placeholder={"Email"} {...email} type="email" />
+						<Input placeholder={"Username"} {...username} />
+						<Button text={"가입하기"} />
+					</form>
+				</>
 			)}
 			{action === "confirm" && (
-				<form onSubmit={onSubmit}>
-					<Input
-						placeholder={"Write your login secret."}
-						required
-						{...secret}
-					/>
-					<Button text={"확인"} />
-				</form>
+				<>
+					<Helmet>
+						<title>Cofirm | yoonstagram</title>
+					</Helmet>
+					<form onSubmit={onSubmit}>
+						<Input
+							placeholder={"Write your login secret."}
+							required
+							{...secret}
+						/>
+						<Button text={"확인"} />
+					</form>
+				</>
 			)}
 		</Form>
 		{action !== "confirm" && (

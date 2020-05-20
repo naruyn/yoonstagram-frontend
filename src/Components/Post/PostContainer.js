@@ -5,6 +5,8 @@ import PostPresenter from "./PostPresenter";
 
 const PostContainer = ({
 	id,
+	caption,
+	location,
 	user,
 	files,
 	likeCount,
@@ -12,14 +14,33 @@ const PostContainer = ({
 	comments,
 	createdAt
 }) => {
-	return <PostPresenter />;
+	const [likeCountState, setLikeCount] = useState(likeCount);
+	const [isLikedState, setIsLiked] = useState(isLiked);
+	const comment = useInput("");
+	return (
+		<PostPresenter
+			caption={caption}
+			location={location}
+			user={user}
+			files={files}
+			likeCount={likeCountState}
+			isLiked={isLikedState}
+			comments={comments}
+			createAt={createdAt}
+			comment={comment}
+			setLikeCount={setLikeCount}
+			setIsLiked={setIsLiked}
+		/>
+	);
 };
 
 PostContainer.propTypes = {
 	id: PropTypes.string.isRequired,
+	caption: PropTypes.string.isRequired,
+	location: PropTypes.string,
 	user: PropTypes.shape({
 		id: PropTypes.string.isRequired,
-		avartar: PropTypes.string,
+		avatar: PropTypes.string,
 		username: PropTypes.string.isRequired
 	}).isRequired,
 	files: PropTypes.arrayOf(
