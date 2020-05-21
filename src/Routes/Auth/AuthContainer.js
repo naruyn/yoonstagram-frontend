@@ -37,6 +37,15 @@ export default () => {
 	});
 	const [localLogInMutation] = useMutation(LOCAL_LOG_IN);
 
+	const initInput = (action) => {
+		setAction(action);
+		email.setValue("");
+		username.setValue("");
+		firstName.setValue("");
+		lastName.setValue("");
+		secret.setValue("");
+	};
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		if (action === "login") {
@@ -119,6 +128,7 @@ export default () => {
 			email={email}
 			secret={secret}
 			onSubmit={onSubmit}
+			onClick={initInput}
 		/>
 	);
 };

@@ -55,7 +55,8 @@ export default ({
 	lastName,
 	email,
 	secret,
-	onSubmit
+	onSubmit,
+	onClick
 }) => (
 	<Wrapper>
 		<Form>
@@ -128,12 +129,12 @@ export default ({
 				{action === "login" ? (
 					<>
 						계정이 없으신가요?{" "}
-						<Link onClick={() => setAction("signup")}>가입하기</Link>
+						<Link onClick={() => onClick("signup")}>가입하기</Link>
 					</>
 				) : (
 					<>
 						계정이 있으신가요?{" "}
-						<Link onClick={() => setAction("login")}>로그인</Link>
+						<Link onClick={() => onClick("login")}>로그인</Link>
 					</>
 				)}
 			</StateChanger>
