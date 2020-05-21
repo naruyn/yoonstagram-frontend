@@ -54,6 +54,7 @@ export default () => {
 						toast.success("Check your email. And put login secret in box");
 						setAction("confirm");
 					}
+					email.setValue("");
 				} catch {
 					toast.error("Request is fail. Try again");
 				}
@@ -79,6 +80,10 @@ export default () => {
 							autoClose: 3000
 						});
 					}
+					username.setValue("");
+					email.setValue("");
+					firstName.setValue("");
+					lastName.setValue("");
 				} catch (e) {
 					toast.error(e.message);
 				}
@@ -93,6 +98,7 @@ export default () => {
 					} = await confirmSecretMutation();
 					if (token !== "" && token !== undefined) {
 						localLogInMutation({ variables: { token } });
+						secret.setValue("");
 					} else {
 						throw Error();
 					}

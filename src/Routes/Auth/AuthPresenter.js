@@ -65,7 +65,12 @@ export default ({
 						<title>Login | yoonstagram</title>
 					</Helmet>
 					<form onSubmit={onSubmit}>
-						<Input placeholder={"Email"} {...email} type="email" />
+						<Input
+							placeholder={"Email"}
+							value={email.value}
+							onChange={email.onChange}
+							type="email"
+						/>
 						<Button text={"로그인"} />
 					</form>
 				</>
@@ -76,10 +81,27 @@ export default ({
 						<title>Signup | yoonstagram</title>
 					</Helmet>
 					<form onSubmit={onSubmit}>
-						<Input placeholder={"Firstname"} {...firstName} />
-						<Input placeholder={"Lastname"} {...lastName} />
-						<Input placeholder={"Email"} {...email} type="email" />
-						<Input placeholder={"Username"} {...username} />
+						<Input
+							placeholder={"Firstname"}
+							value={firstName.value}
+							onChange={firstName.onChange}
+						/>
+						<Input
+							placeholder={"Lastname"}
+							value={lastName.value}
+							onChange={firstName.onChange}
+						/>
+						<Input
+							placeholder={"Email"}
+							value={email.value}
+							onChange={email.onChange}
+							type="email"
+						/>
+						<Input
+							placeholder={"Username"}
+							value={username.value}
+							onChange={username.onChange}
+						/>
 						<Button text={"가입하기"} />
 					</form>
 				</>
@@ -93,7 +115,8 @@ export default ({
 						<Input
 							placeholder={"Write your login secret."}
 							required
-							{...secret}
+							value={secret.value}
+							onChange={secret.onChange}
 						/>
 						<Button text={"확인"} />
 					</form>

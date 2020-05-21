@@ -22,11 +22,11 @@ const Container = styled.div`
 	border-radius: 50%;
 `;
 
-const Avartar = ({ size = "sm", url }) => <Container size={size} url={url} />;
+const Avatar = ({ size = "sm", url }) => <Container size={size} url={url} />;
 
-Avartar.propTypes = {
+Avatar.propTypes = {
 	size: PropTypes.oneOf(["sm", "md", "lg"]),
 	url: PropTypes.string.isRequired
 };
 
-export default Avartar;
+export default Avatar;

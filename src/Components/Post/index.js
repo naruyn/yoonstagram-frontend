@@ -1,2 +1,2 @@
-import PostContainer from "./PostPresenter";
+import PostContainer from "./PostContainer";
 export default PostContainer;

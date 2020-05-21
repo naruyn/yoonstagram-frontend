@@ -44,8 +44,6 @@ const Wrapper = styled.div`
 
 export default () => {
 	const { data, loading } = useQuery(FEED_QEURY);
-	console.log(data, loading);
-
 	return (
 		<Wrapper>
 			<Helmet>
