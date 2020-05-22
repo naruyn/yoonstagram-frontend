@@ -31,6 +31,7 @@ const FEED_QEURY = gql`
 					username
 				}
 			}
+			commentCount
 			createdAt
 		}
 	}
@@ -64,6 +65,7 @@ export default () => {
 						likeCount={post.likeCount}
 						isLiked={post.isLiked}
 						comments={post.comments}
+						commentCount={post.commentCount}
 						createdAt={post.createdAt}
 					/>
 				))}

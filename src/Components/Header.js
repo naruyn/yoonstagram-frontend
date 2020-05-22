@@ -71,8 +71,10 @@ export default withRouter(({ history }) => {
 	const search = useInput("");
 	const onSearchSubmit = (e) => {
 		e.preventDefault();
-		history.push(`/search?term=${search.value}`);
-		search.setValue("");
+		if (search.value !== "") {
+			history.push(`/search?term=${search.value}`);
+			search.setValue("");
+		}
 	};
 	const { data } = useQuery(ME);
 	return (
@@ -89,6 +91,7 @@ export default withRouter(({ history }) => {
 							value={search.value}
 							onChange={search.onChange}
 							placeholder="Search"
+							required={false}
 						/>
 					</form>
 				</HeaderColoumn>

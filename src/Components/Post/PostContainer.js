@@ -14,6 +14,7 @@ const PostContainer = ({
 	likeCount,
 	isLiked,
 	comments,
+	commentCount,
 	createdAt
 }) => {
 	const [likeCountState, setLikeCount] = useState(likeCount);
@@ -36,7 +37,7 @@ const PostContainer = ({
 			setTimeout(() => setCurrentItem(currentItem + 1), 3000);
 		}
 	};
-	useEffect(slide, [currentItem]);
+	// useEffect(slide, [currentItem]);
 
 	const toggleLike = () => {
 		if (isLikedState === true) {
@@ -48,6 +49,17 @@ const PostContainer = ({
 
 		toggleLikeMutation();
 	};
+
+	const makeDateYYYYMMDD = (currentDate) => {
+		const date = new Date(currentDate);
+		return `${date.getFullYear()}/${
+			date.getMonth() + 1 < 10
+				? "0" + (date.getMonth() + 1)
+				: date.getMonth() + 1
+		}/${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`;
+	};
+
+	createdAt = makeDateYYYYMMDD(createdAt);
 
 	const addComment = async (e) => {
 		if (e.keyCode === 13) {
