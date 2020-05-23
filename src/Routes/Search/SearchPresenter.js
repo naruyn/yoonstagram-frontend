@@ -7,6 +7,7 @@ import FatText from "../../Components/FatText";
 
 const Wrapper = styled.div`
 	height: 50vh;
+	text-align: center;
 `;
 
 const Section = styled.div`
@@ -38,11 +39,12 @@ const SearchPresenter = ({ data, loading }) => {
 			if (data.searchUser && data.searchPost) {
 				return (
 					<Wrapper>
-						<Section>
-							{data.searchUser.length === 0 ? (
-								<FatText text="No user found" />
-							) : (
-								data.searchUser.map((searchUser) => (
+						{data.searchUser.length === 0 && data.searchPost.length === 0 && (
+							<FatText text="No search data" />
+						)}
+						{data.searchUser.length !== 0 && (
+							<Section>
+								{data.searchUser.map((searchUser) => (
 									<UserCard
 										key={searchUser.id}
 										id={searchUser.id}
@@ -51,23 +53,21 @@ const SearchPresenter = ({ data, loading }) => {
 										isFollowing={searchUser.isFollowing}
 										isSelf={searchUser.isSelf}
 									/>
-								))
-							)}
-						</Section>
-						<PostSection>
-							{data.searchPost.length === 0 ? (
-								<FatText text="No post found" />
-							) : (
-								data.searchPost.map((searchPost) => (
+								))}
+							</Section>
+						)}
+						{data.searchPost.length !== 0 && (
+							<PostSection>
+								{data.searchPost.map((searchPost) => (
 									<PostCard
 										key={searchPost.id}
 										file={searchPost.files[0].url}
 										likeCount={searchPost.likeCount}
 										commentCount={searchPost.commentCount}
 									/>
-								))
-							)}
-						</PostSection>
+								))}
+							</PostSection>
+						)}
 					</Wrapper>
 				);
 			}
