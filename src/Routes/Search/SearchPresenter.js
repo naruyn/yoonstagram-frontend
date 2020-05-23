@@ -6,10 +6,24 @@ import Loader from "../../Components/Loader";
 import FatText from "../../Components/FatText";
 
 const Wrapper = styled.div`
-	text-align: center;
+	height: 50vh;
 `;
 
-const Section = styled.div``;
+const Section = styled.div`
+	margin-bottom: 50px;
+	align-items: center;
+	display: grid;
+	grid-gap: 25px;
+	grid-template-columns: repeat(4, 160px);
+	grid-template-rows: 160px;
+	grid-auto-rows: 160px;
+`;
+
+const PostSection = styled(Section)`
+	grid-template-columns: repeat(4, 200px);
+	grid-template-rows: 200px;
+	grid-auto-rows: 200px;
+`;
 
 const SearchPresenter = ({ data, loading }) => {
 	if (loading) {
@@ -31,6 +45,7 @@ const SearchPresenter = ({ data, loading }) => {
 								data.searchUser.map((searchUser) => (
 									<UserCard
 										key={searchUser.id}
+										id={searchUser.id}
 										username={searchUser.username}
 										avatar={searchUser.avatar}
 										isFollowing={searchUser.isFollowing}
@@ -39,20 +54,20 @@ const SearchPresenter = ({ data, loading }) => {
 								))
 							)}
 						</Section>
-						<Section>
+						<PostSection>
 							{data.searchPost.length === 0 ? (
 								<FatText text="No post found" />
 							) : (
 								data.searchPost.map((searchPost) => (
 									<PostCard
 										key={searchPost.id}
-										files={searchPost.files}
+										file={searchPost.files[0].url}
 										likeCount={searchPost.likeCount}
 										commentCount={searchPost.commentCount}
 									/>
 								))
 							)}
-						</Section>
+						</PostSection>
 					</Wrapper>
 				);
 			}

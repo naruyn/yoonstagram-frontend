@@ -22,11 +22,11 @@ const Container = styled.div`
 	border-radius: 50%;
 `;
 
-const Avatar = ({ size = "sm", url }) => {
+const Avatar = ({ size = "sm", url, className }) => {
 	if (!url)
 		url =
 			"https://scontent-itm1-1.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-itm1-1.cdninstagram.com&_nc_ohc=m65G8Oe7gHUAX9nqE4t&oh=ce372a83907a4814277a8aa7e2c496e1&oe=5EF0140F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2";
-	return <Container size={size} url={url} />;
+	return <Container size={size} url={url} className={className} />;
 };
 
 Avatar.propTypes = {

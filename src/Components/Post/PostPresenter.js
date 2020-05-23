@@ -143,16 +143,13 @@ export default ({
 			<FatText text={likeCount === 1 ? `1 like` : `${likeCount} likes`} />
 			<Timestamp>{createdAt}</Timestamp>
 			<Comments>
-				{comments && (
-					<Comments>
-						{comments.map((comment) => (
-							<Comment key={comment.id}>
-								<FatText text={comment.user.username} />
-								{comment.text}
-							</Comment>
-						))}
-					</Comments>
-				)}
+				{comments &&
+					comments.map((comment) => (
+						<Comment key={comment.id}>
+							<FatText text={comment.user.username} />
+							{comment.text}
+						</Comment>
+					))}
 			</Comments>
 			<Textarea
 				placeholder={"Add a comment..."}

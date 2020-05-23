@@ -9,8 +9,6 @@ export default withRouter(({ location: { search } }) => {
 	const term = search.split("=")[1];
 
 	const { data, loading } = useQuery(SEARCH, { variables: { term } });
-
-	console.log(data, loading);
 	return (
 		<>
 			<Helmet>
