@@ -99,7 +99,7 @@ export default withRouter(({ history }) => {
 					<HeaderLink to="/explore">
 						<Compass />
 					</HeaderLink>
-					<HeaderLink to="/notifications">
+					<HeaderLink to="/explore">
 						<HeartEmpty />
 					</HeaderLink>
 					{data && data.me ? (

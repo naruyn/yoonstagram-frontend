@@ -4,6 +4,7 @@ import styled from "styled-components";
 import FatText from "../FatText";
 import Avatar from "../Avatar";
 import { HeartEmpty, HeartFull, Comment as CommentIcon } from "../Icons";
+import { Link } from "react-router-dom";
 
 const Post = styled.div`
 	${(props) => props.theme.whiteBox}
@@ -16,6 +17,9 @@ const Header = styled.header`
 	display: flex;
 	align-items: center;
 	padding: 15px;
+	a {
+		color: inherit;
+	}
 `;
 
 const UserColumn = styled.div`
@@ -88,6 +92,14 @@ const Textarea = styled(TextareaAutosize)`
 	font: unset;
 `;
 
+const Caption = styled.div`
+	margin-top: 10px;
+`;
+
+const CaptionText = styled(FatText)`
+	margin-right: 5px;
+`;
+
 const Comments = styled.ul`
 	margin-top: 10px;
 `;
@@ -115,10 +127,18 @@ export default ({
 }) => (
 	<Post>
 		<Header>
-			<Avatar size="sm" url={avatar} />
+			<Link to={`/${username}`}>
+				<Avatar size="sm" url={avatar} />
+			</Link>
 			<UserColumn>
-				<FatText text={username} />
-				{location && <Location>{location}</Location>}
+				<Link to={`/${username}`}>
+					<FatText text={username} />
+				</Link>
+				{location && (
+					<Link to={`/search?temr${location}`}>
+						<Location>{location}</Location>
+					</Link>
+				)}
 			</UserColumn>
 		</Header>
 		<Files>
@@ -141,6 +161,10 @@ export default ({
 				</Button>
 			</Buttons>
 			<FatText text={likeCount === 1 ? `1 like` : `${likeCount} likes`} />
+			<Caption>
+				<CaptionText text={username} />
+				{caption}
+			</Caption>
 			<Timestamp>{createdAt}</Timestamp>
 			<Comments>
 				{comments &&
