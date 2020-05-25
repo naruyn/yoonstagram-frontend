@@ -86,7 +86,7 @@ const PostCard = ({ file, likeCount, commentCount, length = 1 }) => (
 );
 
 PostCard.propTypes = {
-	files: PropTypes.object.isRequired,
+	file: PropTypes.string.isRequired,
 	likeCount: PropTypes.number.isRequired,
 	commentCount: PropTypes.number.isRequired,
 	lenght: PropTypes.number

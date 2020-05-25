@@ -3,7 +3,15 @@ import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import useInput from "../Hooks/useInput";
 import Input from "./Input";
-import { MainLogo, Compass, HeartEmpty, User } from "./Icons";
+import {
+	MainLogo,
+	Compass,
+	HeartEmpty,
+	User,
+	CompassFull,
+	UserFull,
+	HeartFull
+} from "./Icons";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
 
@@ -59,6 +67,10 @@ const HeaderLink = styled(Link)`
 	}
 `;
 
+const HeartFullIcon = styled(HeartFull)`
+	fill: black;
+`;
+
 const ME = gql`
 	{
 		me {
@@ -67,7 +79,7 @@ const ME = gql`
 	}
 `;
 
-export default withRouter(({ history }) => {
+export default withRouter(({ history, location }) => {
 	const search = useInput("");
 	const onSearchSubmit = (e) => {
 		e.preventDefault();
@@ -97,17 +109,25 @@ export default withRouter(({ history }) => {
 				</HeaderColoumn>
 				<HeaderColoumn>
 					<HeaderLink to="/explore">
-						<Compass />
+						{location.pathname === "/explore" ? <CompassFull /> : <Compass />}
 					</HeaderLink>
-					<HeaderLink to="/explore">
-						<HeartEmpty />
+					<HeaderLink to="/notification">
+						{location.pathname === "/notification" ? (
+							<HeartFullIcon fill="" />
+						) : (
+							<HeartEmpty />
+						)}
 					</HeaderLink>
 					{data && data.me ? (
 						<HeaderLink to={data.me.username}>
-							<User />
+							{location.pathname === `/${data.me.username}` ? (
+								<UserFull />
+							) : (
+								<User />
+							)}
 						</HeaderLink>
 					) : (
-						<HeaderLink to="/#">
+						<HeaderLink to="/">
 							<User />
 						</HeaderLink>
 					)}
