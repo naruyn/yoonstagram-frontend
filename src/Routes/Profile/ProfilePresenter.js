@@ -46,9 +46,10 @@ const Count = styled.li`
 
 const Posts = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, 200px);
-	grid-template-rows: 200px;
-	grid-auto-rows: 200px;
+	grid-template-columns: repeat(3, 250px);
+	grid-template-rows: 250px;
+	grid-auto-rows: 250px;
+	grid-gap: 25px;
 `;
 
 export default ({ data, loading }) => {
@@ -110,6 +111,7 @@ export default ({ data, loading }) => {
 									file={post.files[0].url}
 									likeCount={post.likeCount}
 									commentCount={post.commentCount}
+									length={post.files.length}
 								/>
 							))}
 					</Posts>

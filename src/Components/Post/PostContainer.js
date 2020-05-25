@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
@@ -29,15 +29,22 @@ const PostContainer = ({
 	const [addCommentMutation] = useMutation(ADD_COMMENT, {
 		variables: { text: comment.value, postId: id }
 	});
-	const slide = () => {
+	const prevClick = () => {
 		const totalFiles = files.length;
-		if (currentItem === totalFiles - 1) {
-			setTimeout(() => setCurrentItem(0), 3000);
+		if (currentItem === 0) {
+			setCurrentItem(totalFiles - 1);
 		} else {
-			setTimeout(() => setCurrentItem(currentItem + 1), 3000);
+			setCurrentItem(currentItem - 1);
 		}
 	};
-	// useEffect(slide, [currentItem]);
+	const nextClick = () => {
+		const totalFiles = files.length;
+		if (currentItem === totalFiles - 1) {
+			setCurrentItem(0);
+		} else {
+			setCurrentItem(currentItem + 1);
+		}
+	};
 
 	const toggleLike = () => {
 		if (isLikedState === true) {
@@ -91,6 +98,8 @@ const PostContainer = ({
 			currentItem={currentItem}
 			toggleLike={toggleLike}
 			addComment={addComment}
+			prevClick={prevClick}
+			nextClick={nextClick}
 		/>
 	);
 };

@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { HeartFull, CommentFull } from "./Icons";
+import { HeartFull, CommentFull, MoreFiles } from "./Icons";
 
 const Overlay = styled.div`
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.3);
 	width: 100%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	opacity: 0;
-	transition: opacity 0.3s linear;
 	svg {
 		fill: white;
 	}
+	z-index: 3;
+	visibility: hidden;
 `;
 
 const Card = styled.div`
@@ -23,11 +24,15 @@ const Card = styled.div`
 	&:hover {
 		${Overlay} {
 			opacity: 1;
+			visibility: visible;
 		}
 	}
 	cursor: pointer;
 	width: 100%;
 	height: 100%;
+	position: relative;
+	align-items: stretch;
+	flex: 0 0 auto;
 `;
 
 const Number = styled.div`
@@ -43,8 +48,30 @@ const NumberText = styled.span`
 	margin-left: 10px;
 `;
 
-const PostCard = ({ file, likeCount, commentCount }) => (
+const More = styled.div`
+	display: flex;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	justify-content: flex-end;
+	padding: 7px 7px 0 0;
+	pointer-events: none;
+	svg {
+		fill: white;
+		opacity: 0.3;
+	}
+`;
+
+const PostCard = ({ file, likeCount, commentCount, length = 1 }) => (
 	<Card file={file}>
+		{length > 1 && (
+			<More>
+				<MoreFiles size="18" />
+			</More>
+		)}
 		<Overlay>
 			<Number>
 				<HeartFull />
@@ -59,9 +86,10 @@ const PostCard = ({ file, likeCount, commentCount }) => (
 );
 
 PostCard.propTypes = {
-	file: PropTypes.string.isRequired,
+	files: PropTypes.object.isRequired,
 	likeCount: PropTypes.number.isRequired,
-	commentCount: PropTypes.number.isRequired
+	commentCount: PropTypes.number.isRequired,
+	lenght: PropTypes.number
 };
 
 export default PostCard;
